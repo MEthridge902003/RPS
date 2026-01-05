@@ -11,10 +11,16 @@
 <div class="card">
   <h4>Rock Paper Scissors</h4>
   <h6>Make Your Choice</h6>
-  <p>Computer chose: <span id="computer-display"> Ready </span></p>
+  <p>Computer: <span id="computer-display"> Ready </span></p>
   <h2 id="match-result">Waiting for input...</h2>
   <p>Choose: <input type="text" id="user-input"></p>
-  <button id="play-game-btn">Start Match</button>
+  <div class="controller">
+    <button id="play-game-btn">Start Match</button>
+  <button class="choice-btn" value="rock">🪨</button>
+  <button class="choice-btn" value="paper">📄</button>
+  <button class="choice-btn" value="scissors">✂️</button>
+  
+</div>
 </div>
 </body>
 </html>

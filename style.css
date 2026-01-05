@@ -25,3 +25,24 @@ input, button {
     background: #333;
     color: white;
 }
+.controller {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.choice-btn {
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.1s; /* Makes it "pop" when clicked */
+}
+
+.choice-btn:hover {
+    background-color: #444;
+}
+
+.choice-btn:active {
+    transform: scale(0.9); /* Squeezes the button when you press it */
+}

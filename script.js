@@ -3,6 +3,7 @@ const playBtn = document.getElementById('play-game-btn');
 const userInput = document.getElementById('user-input'); // Note: Matched to your HTML id
 const resultDisplay = document.getElementById('match-result');
 const computerDisplay = document.getElementById('computer-display');
+const choiceButtons = document.querySelectorAll('.choice-btn');
 
 // NEW: SCORE TRACKERS (Global Scope - these stay alive between clicks)
 let playerWins = 0;
@@ -20,6 +21,23 @@ userInput.addEventListener('input', () => {
     else {
         computerDisplay.textContent = `Next round?`;
         resultDisplay.textContent = `Score: ${playerWins} - ${computerWins}.`;
+    }
+});
+
+// 2. Loop through them and add a listener to each
+choiceButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Set the input box value to the button's value
+        userInput.value = button.value; 
+        
+        // Trigger the "Start Match" button click automatically!
+        playBtn.click(); 
+    });
+});
+// Listen for 'Enter' key inside the text box
+userInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        playBtn.click();
     }
 });
 
@@ -44,15 +62,24 @@ playBtn.addEventListener('click', () => {
     // 4. Determine the Winner (Now passing logic to update scores)
     determineWinner(playerChoice, computerChoice);
     
-    // NEW: CHECK FOR MATCH POINT
-    if (playerWins === 2 || computerWins === 2) {
-        const finalMessage = playerWins === 2 ? "MATCH OVER: YOU WON!" : "MATCH OVER: SYSTEM WON.";
-        alert(finalMessage);
-         resultDisplay.textContent = `Score: ${playerWins} - ${computerWins}.`;
-        // Reset the memory for a fresh Best of 3
-        playerWins = 0;
-        computerWins = 0;
+    // NEW: Selective Celebration Logic
+if (playerWins === 2 || computerWins === 2) {
+    
+    // 1. ONLY show the alert if the human won
+    if (playerWins === 2) {
+        alert("MATCH OVER: YOU DEFEATED THE SYSTEM!");
+    } 
+    // If the computer won, we stay silent. No "Pop-up of Loserness."
+
+    // 2. Update the display so the user can see the final 0-2 or 1-2 score
+    resultDisplay.textContent = `Final Score: ${playerWins} - ${computerWins}. Match Resetting...`;
+
+    // 3. Reset the memory
+    playerWins = 0;
+    computerWins = 0;
     }
+    userInput.value = "";
+    userInput.focus();      // Put the cursor back in the box automatically
 });
 
 
