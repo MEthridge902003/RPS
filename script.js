@@ -48,7 +48,7 @@ playBtn.addEventListener('click', () => {
     if (playerWins === 2 || computerWins === 2) {
         const finalMessage = playerWins === 2 ? "MATCH OVER: YOU WON!" : "MATCH OVER: SYSTEM WON.";
         alert(finalMessage);
-        
+         resultDisplay.textContent = `Score: ${playerWins} - ${computerWins}.`;
         // Reset the memory for a fresh Best of 3
         playerWins = 0;
         computerWins = 0;
